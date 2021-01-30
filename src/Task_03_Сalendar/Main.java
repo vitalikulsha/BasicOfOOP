@@ -20,6 +20,4 @@ public class Main {
         System.out.println("количество выходных дней - " + weekendAndHoliday.getNumberWeekend());
         System.out.println("количество праздничных дней - " + weekendAndHoliday.getNumberHoliday());
     }
-
-
 }
