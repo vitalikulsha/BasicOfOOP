@@ -68,6 +68,4 @@ public class Payment {
             this.shoppingList = shoppingList;
         }
     }
-
-
 }

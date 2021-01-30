@@ -17,7 +17,4 @@ public class Main {
         payment.amountMoneyPay(purchase.getShoppingList());
         payment.printShoppingList(purchase.getShoppingList());
     }
-
-
-
 }
