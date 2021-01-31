@@ -53,11 +53,11 @@ public class Payment {
                 shoppingList.put(product, quantity);
                 while (true) {
                     System.out.print("Продолжить выбор товара (Y/N)? - ");
-                    String continuation = reader.readLine();
-                    if (continuation.equalsIgnoreCase("Y")) {
+                    String continued = reader.readLine();
+                    if (continued.equalsIgnoreCase("Y")) {
                         search = true;
                         break;
-                    } else if (continuation.equalsIgnoreCase("N")) {
+                    } else if (continued.equalsIgnoreCase("N")) {
                         search = false;
                         break;
                     } else {
