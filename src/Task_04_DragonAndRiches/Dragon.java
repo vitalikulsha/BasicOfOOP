@@ -2,10 +2,16 @@ package Task_04_DragonAndRiches;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.nio.file.AccessDeniedException;
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.*;
 
 public class Dragon {
-    public static final String FILE_RICHES = "src\\Task_04_DragonAndRiches\\RichesList.txt";
+    public static final String FILE_RICHES = "data\\DragonAndRiches\\RichesList.txt";
+    public static final String FILE_SELECT_RICHES = "data\\DragonAndRiches\\SelectRiches.txt";
+    public static final String FILE_RICHES_BY_NUMBER = "data\\DragonAndRiches\\RichesByNumber.txt";
     private String name;
     private List<Riches> richesList;
 
@@ -40,17 +46,36 @@ public class Dragon {
 
     //Вывод в консоль сокровищ по порядковым номерам
     public void printRichesByNumber(int... numbers) {
+        List<Riches> list = new ArrayList<>();
         System.out.println("Список сокровищ с номерами " + Arrays.toString(numbers) + ":");
         for (int i = 0; i < numbers.length; i++) {
             for (int j = 0; j < richesList.size(); j++) {
                 if (numbers[i] == j) {
                     System.out.println("[" + j + "] " + richesList.get(i).toString());
+                    list.add(richesList.get(i));
                     break;
                 }
             }
         }
+        StringBuilder str = new StringBuilder("Список сокровищ с номерами " + Arrays.toString(numbers) + ":\n");
+        writeFile(list, FILE_RICHES_BY_NUMBER, str);
     }
 
+    //Запись в файл списка сокровищ
+    private void writeFile(List<Riches> richesList, String pathFile, StringBuilder str) {
+        try {
+            for (Riches value : richesList) {
+                str.append(value.toString() + "\n");
+            }
+            Files.writeString(Paths.get(pathFile), str.toString());
+        } catch (FileAlreadyExistsException e) {
+            e.printStackTrace();
+        } catch (NullPointerException | AccessDeniedException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     //Выбор самого дорогого сокровища
     public Riches selectMaxPrice() {
@@ -65,52 +90,67 @@ public class Dragon {
 
     //выбор сокровищ на заданную сумму
     public List<Riches> selectRichesAmount(int amount, BufferedReader reader) throws IOException {
+        int constAmount = amount;
         List<Riches> list = new ArrayList<>();
-        printRiches();
+        Set<Integer> numberSet = new HashSet<>();
         boolean select = true;
         while (select) {
             while (true) {
                 System.out.print("Выберите номер сокровища на сумму " + amount + ": ");
                 int index = Integer.parseInt(reader.readLine());
+                while (true) {
+                    if (numberSet.contains(index)) {
+                        System.out.print("Сокровище [" + index + "] " + this.richesList.get(index).getTitle() +
+                                " уже выбрано, введите другой номер: ");
+                        index = Integer.parseInt(reader.readLine());
+                    } else {
+                        break;
+                    }
+                }
                 int residual = amount - this.richesList.get(index).getPrice();
                 if (residual >= 0) {
+                    numberSet.add(index);
                     list.add(this.richesList.get(index));
                     amount -= this.richesList.get(index).getPrice();
                 } else {
                     System.out.println("Недостаточно средств, " + this.richesList.get(index).getTitle() +
                             " не выбран. Остаток средств: " + amount);
-                    break;
                 }
-                if (amount == 0) {
-                    System.out.println("Нет средств. Выбор закончен.");
-                    break;
-                }
+                break;
             }
-            select = continueSelection(reader);
+            select = continueSelect(amount, reader);
         }
-        printSelectRiches(list);
+        printSelectRiches(list, constAmount);
+        StringBuilder str = new StringBuilder("Список сокровищ на сумму " + constAmount + ":\n");
+        writeFile(list, FILE_SELECT_RICHES, str);
         return list;
     }
 
     //Продолжение выбора
-    public boolean continueSelection(BufferedReader reader) throws IOException {
-        while (true) {
-            System.out.print("Продолжить выбор (Y/N)? ");
-            String continued = reader.readLine();
-            if (continued.equalsIgnoreCase("Y")) {
-                return true;
-            } else if (continued.equalsIgnoreCase("N")) {
-                return false;
-            } else {
-                System.out.println("Попробуй еще раз.");
+    private boolean continueSelect(int amount, BufferedReader reader) throws IOException {
+        if (amount > 0) {
+            System.out.print("Остаток " + amount + ". ");
+            while (true) {
+                System.out.print("Продолжить выбор (Y/N)? ");
+                String continued = reader.readLine();
+                if (continued.equalsIgnoreCase("Y")) {
+                    return true;
+                } else if (continued.equalsIgnoreCase("N")) {
+                    return false;
+                } else {
+                    System.out.println("Попробуй еще раз.");
+                }
             }
+        } else {
+            System.out.println("Нет средств. Выбор закончен.");
+            return false;
         }
     }
 
     //Вывод в консоль выбранного списка сокровищ
-    public void printSelectRiches(List<Riches> list) {
+    private void printSelectRiches(List<Riches> list, int amount) {
         if (list.size() != 0) {
-            System.out.println("Список выбранных сокровищ: ");
+            System.out.println("Список сокровищ на сумму " + amount + ":");
             for (Riches riches : list) {
                 System.out.println(riches.toString());
             }
@@ -118,6 +158,7 @@ public class Dragon {
             System.out.println("Список сокровищ пуст.");
         }
     }
+
 
     public String getName() {
         return name;

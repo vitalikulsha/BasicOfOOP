@@ -25,7 +25,6 @@ public class Riches {
         this.price = price;
     }
 
-
     @Override
     public String toString() {
         return getTitle() + ", price = " + getPrice();

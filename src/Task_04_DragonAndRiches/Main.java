@@ -26,16 +26,10 @@ public class Main {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         Dragon dragon = new Dragon("Дрогон");
         dragon.readRiches(readerFile);
-        dragon.printRiches();
-        dragon.printRichesByNumber(0, 49, 20, 15, 30, 45);
+        dragon.printRichesByNumber(0, 49, 20, 15, 30, 45, 87, 74);
         System.out.println("Самое дорогое сокровище: " + dragon.selectMaxPrice());
+        dragon.printRiches();
         dragon.selectRichesAmount(500000, reader);
-
-        //класс DragonNew доработать!
-       /* DragonNew dragonNew = new DragonNew("Рейгаль");
-        dragonNew.readRichesArr(readerFile);
-        System.out.println("Самое дорогое сокровище: " + dragonNew.selectMaxPrice());
-        dragonNew.printRiches();*/
 
         reader.close();
     }
