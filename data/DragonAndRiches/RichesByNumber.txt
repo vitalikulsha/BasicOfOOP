@@ -1,0 +1,9 @@
+Список сокровищ с номерами [0, 49, 20, 15, 30, 45, 87, 74]:
+GoldCup_Rank1, price = 1000
+GoldCup_Rank2, price = 2000
+GoldCup_Rank3, price = 3000
+SilverCup_Rank1, price = 100
+SilverCup_Rank2, price = 200
+SilverCup_Rank3, price = 300
+BronzeCup_Rank1, price = 10
+BronzeCup_Rank2, price = 20
