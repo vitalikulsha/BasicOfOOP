@@ -62,7 +62,7 @@ public class Database {
             set = typeBouquetSet;
         }
         for (String value : set) {
-            System.out.println(value);
+            System.out.println("- [" + value + ']');
         }
         System.out.print("Выберите тип цветочной композиции из списка: ");
         while (true) {
