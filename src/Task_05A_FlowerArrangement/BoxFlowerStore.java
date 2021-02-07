@@ -1,16 +1,17 @@
 package Task_05A_FlowerArrangement;
 
-import Task_05A_FlowerArrangement.VegetativeFlowerArragement.*;
+import Task_05A_FlowerArrangement.BoxFlowerArrangement.*;
 
-public class VegetativeFlowerStore extends FlowerStore {
+public class BoxFlowerStore extends FlowerStore {
+
     @Override
     protected FlowerArrangement createFlowerArrangement(String type) {
         if (type.equalsIgnoreCase("роза")) {
-            return new VegetativeRoseFlowerArrangement();
+            return new BoxRoseFlowerArrangement();
         } else if (type.equalsIgnoreCase("астра")) {
-            return new VegetativeAsterFlowerArrangement();
+            return new BoxAsterFlowerArrangement();
         } else if (type.equalsIgnoreCase("тюльпан")) {
-            return new VegetativeTulipFlowerArrangement();
+            return new BoxTulipFlowerArrangement();
         } else {
             return null;
         }

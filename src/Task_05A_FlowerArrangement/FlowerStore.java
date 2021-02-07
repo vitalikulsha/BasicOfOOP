@@ -7,6 +7,7 @@ public abstract class FlowerStore {
         flowerArrangement.prepare();
         flowerArrangement.collect();
         flowerArrangement.pack();
+        flowerArrangement.pay();
         return flowerArrangement;
     }
 

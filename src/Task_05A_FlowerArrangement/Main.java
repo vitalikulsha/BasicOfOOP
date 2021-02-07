@@ -1,5 +1,11 @@
 package Task_05A_FlowerArrangement;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+
+import static Task_05A_FlowerArrangement.Database.*;
+
 /*
 Задача 5.
 Создать консольное приложение, удовлетворяющее следующим требованиям:
@@ -13,11 +19,8 @@ package Task_05A_FlowerArrangement;
 (объект, представляющий собой цветочную композицию). Составляющими цветочной композиции являются цветы и упаковка.
  */
 public class Main {
-    public static void main(String[] args) {
-        FlowerStore decorStore = new DecorativeFlowerStore();
-        FlowerStore vegetStore = new VegetativeFlowerStore();
-        FlowerArrangement flowerArrangement = decorStore.orderFlowerArrangement("роза");
-        flowerArrangement = vegetStore.orderFlowerArrangement("астра");
-        System.out.println(flowerArrangement.toString());
+    public static void main(String[] args) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+        selectFlowerArrangement(reader);
     }
 }

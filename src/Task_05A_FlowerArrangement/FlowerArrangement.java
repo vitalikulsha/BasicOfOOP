@@ -10,21 +10,25 @@ public abstract class FlowerArrangement {
     protected List<String> flowers = new ArrayList<>();
     protected int price;
 
-    void prepare() {
+    public void prepare() {
         System.out.println("Подготовка цветочной композиции: " + name);
-        System.out.println("Подготовить упаковку: " + packaging);
-        System.out.println("Подготовить цветы: ");
+        System.out.println(" подготовить упаковку: " + packaging);
+        System.out.println(" подготовить цветы: ");
         for (String flower : flowers) {
-            System.out.println(" " + flower);
+            System.out.println("\t- " + flower);
         }
     }
 
-    void collect() {
+    public void collect() {
         System.out.println("Собрать цветочную композицию.");
     }
 
-    void pack() {
+    public void pack() {
         System.out.println("Упаковать цветочную композицию.");
+    }
+
+    public void pay() {
+        System.out.println("Стоимость цветочной композиции " + price + " руб.");
     }
 
     public String getName() {
