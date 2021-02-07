@@ -11,7 +11,7 @@ public abstract class FlowerArrangement {
     protected int price;
 
     public void prepare() {
-        System.out.println("Подготовка цветочной композиции: " + name);
+        System.out.println("Подготовка цветочной композиции \"" + name + "\":");
         System.out.println(" подготовить упаковку: " + packaging);
         System.out.println(" подготовить цветы: ");
         for (String flower : flowers) {

@@ -2,7 +2,7 @@ package Task_05A_FlowerArrangement;
 
 import Task_05A_FlowerArrangement.BoxFlowerArrangement.*;
 
-public class BoxFlowerStore extends FlowerStore {
+public class BoxDepartmentFlowerStore extends FlowerStore {
 
     @Override
     protected FlowerArrangement createFlowerArrangement(String type) {

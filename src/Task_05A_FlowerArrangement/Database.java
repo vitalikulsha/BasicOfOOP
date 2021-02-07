@@ -39,10 +39,10 @@ public class Database {
         while (true) {
             style = reader.readLine();
             if (style.equalsIgnoreCase("коробка")) {
-                flowerStore = new BoxFlowerStore();
+                flowerStore = new BoxDepartmentFlowerStore();
                 break;
             } else if (style.equalsIgnoreCase("букет")) {
-                flowerStore = new BouquetFlowerStore();
+                flowerStore = new BouquetDepartmentFlowerStore();
                 break;
             } else {
                 System.out.print("Нет такой цветочной композиции, попробуйте еще раз. ");
@@ -64,7 +64,7 @@ public class Database {
         for (String value : set) {
             System.out.println("- [" + value + ']');
         }
-        System.out.print("Выберите тип цветочной композиции из списка: ");
+        System.out.print("Выберите тип цветочной композиции из представленного списка: ");
         while (true) {
             String type = reader.readLine();
             if (set.contains(type.toLowerCase())) {
