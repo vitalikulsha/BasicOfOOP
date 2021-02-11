@@ -2,25 +2,24 @@ package Task_02_Payment;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Map;
 
-import static Task_02_Payment.DatabaseProduct.*;
+import static Task_02_Payment.DataUtilProduct.*;
 
 /*
 Создать класс Payment с внутренним классом,
 с помощью объектов которого можно сформировать покупку из нескольких товаров.
  */
 public class Payment {
-    private int amountMoney;
-
     //Вычисление суммы денег к   оплате за список товаров
-    public void amountMoneyPay(Map<Product, Integer> shoppingList) {
+    public int amountMoneyPay(Map<Product, Integer> shoppingList) {
         int sum = 0;
         for (Map.Entry<Product, Integer> pair : shoppingList.entrySet()) {
             sum += pair.getKey().getPrice() * pair.getValue();
         }
-        this.amountMoney = sum;
+        return sum;
     }
 
     //вывод в консоль списка покупок и суммы к оплате
@@ -29,22 +28,19 @@ public class Payment {
         for (Map.Entry<Product, Integer> pair : shoppingList.entrySet()) {
             System.out.println(pair.getKey().toString() + " - " + pair.getValue() + " шт.");
         }
-        System.out.println("Сумма к оплате: " + amountMoney + " у.е.");
+        System.out.println("Сумма к оплате: " + amountMoneyPay(shoppingList) + " у.е.");
     }
 
-    public class Purchase {
-        private Map<Product, Integer> shoppingList;
+    public class Order {
+        private Map<Product, Integer> orderList;
 
-        public Map<Product, Integer> getShoppingList() {
-            return shoppingList;
-        }
-
-        public void setShoppingList(Map<Product, Integer> shoppingList) {
-            this.shoppingList = shoppingList;
+        public Map<Product, Integer> getOrderList() {
+            return orderList;
         }
 
         //Создание списка покупок
-        public void createShoppingList(BufferedReader reader) throws IOException {
+        public void createShoppingList() throws IOException {
+            BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             Map shoppingList = new HashMap<Product, Integer>();
             boolean search = true;
             while (search) {
@@ -61,11 +57,11 @@ public class Payment {
                         search = false;
                         break;
                     } else {
-                        System.out.println("Давайте попробуем еще раз.");
+                        System.out.println("Попробуйте еще раз.");
                     }
                 }
             }
-            this.shoppingList = shoppingList;
+            this.orderList = shoppingList;
         }
     }
 }

@@ -10,11 +10,10 @@ import java.io.InputStreamReader;
  */
 public class Main {
     public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         Payment payment = new Payment();
-        Payment.Purchase purchase = payment.new Purchase();
-        purchase.createShoppingList(reader);
-        payment.amountMoneyPay(purchase.getShoppingList());
-        payment.printShoppingList(purchase.getShoppingList());
+        Payment.Order purchase = payment.new Order();
+        purchase.createShoppingList();
+        payment.amountMoneyPay(purchase.getOrderList());
+        payment.printShoppingList(purchase.getOrderList());
     }
 }

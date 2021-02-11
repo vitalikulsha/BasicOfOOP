@@ -4,25 +4,25 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.util.*;
 
-public class DatabaseProduct {
+public class DataUtilProduct {
 
     public static List<Product> productList = new ArrayList<Product>() {
         {
-            this.add(new Product("Принтер", "Canon", 200));
-            this.add(new Product("Принтер", "HP", 300));
-            this.add(new Product("Принтер", "Epson", 280));
-            this.add(new Product("Ноутбук", "Lenovo", 1000));
-            this.add(new Product("Ноутбук", "Apple", 2500));
-            this.add(new Product("Ноутбук", "Vaio", 1200));
-            this.add(new Product("Планшет", "Samsung", 1300));
-            this.add(new Product("Планшет", "Apple", 1900));
-            this.add(new Product("Планшет", "Huawei", 1000));
-            this.add(new Product("Телевизор", "Samsung", 1300));
-            this.add(new Product("Телевизор", "LG", 1000));
-            this.add(new Product("Телевизор", "Горизонт", 300));
-            this.add(new Product("Пылесос", "Samsung", 350));
-            this.add(new Product("Пылесос", "Bosh", 500));
-            this.add(new Product("Пылесос", "Витязь", 150));
+            this.add(new Product("принтер", "canon", 200));
+            this.add(new Product("принтер", "hp", 300));
+            this.add(new Product("принтер", "epson", 280));
+            this.add(new Product("ноутбук", "lenovo", 1000));
+            this.add(new Product("ноутбук", "apple", 2500));
+            this.add(new Product("ноутбук", "vaio", 1200));
+            this.add(new Product("планшет", "samsung", 1300));
+            this.add(new Product("планшет", "apple", 1900));
+            this.add(new Product("планшет", "huawei", 1000));
+            this.add(new Product("телевизор", "samsung", 1300));
+            this.add(new Product("телевизор", "lg", 1000));
+            this.add(new Product("телевизор", "горизонт", 300));
+            this.add(new Product("пылесос", "samsung", 350));
+            this.add(new Product("пылесос", "bosh", 500));
+            this.add(new Product("пылесос", "витязь", 150));
         }
     };
 
@@ -42,7 +42,7 @@ public class DatabaseProduct {
         String name;
         while (true) {
             name = reader.readLine();
-            if (createNameSet().contains(name)) {
+            if (createNameSet().contains(name.toLowerCase())) {
                 break;
             } else {
                 System.out.print("Ничего не найдено, попробуйте еще раз: ");
@@ -70,7 +70,7 @@ public class DatabaseProduct {
         String manufacturer;
         while (true) {
             manufacturer = reader.readLine();
-            if (manufacturerSet.contains(manufacturer)) {
+            if (manufacturerSet.contains(manufacturer.toLowerCase())) {
 
                 break;
             } else {
