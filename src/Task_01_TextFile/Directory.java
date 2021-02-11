@@ -1,37 +1,34 @@
 package Task_01_TextFile;
-/*
-Переменная address - адрес деректории
-Методы createDirectories() - создание директории
- */
 
-import java.io.IOException;
 import java.nio.file.*;
 
 public class Directory {
-    private Path address;
+    private Path path;
 
-    public Directory(String address) {
-        this.address = createDirectories(address);
+    public Directory(String path) {
+        this.path = createDirectory(path);
     }
 
     //создание директории
-    public Path createDirectories(String address) {
-        try {
-            return Files.createDirectories(Paths.get(address));
-        } catch (InvalidPathException | NullPointerException e) {
-            System.out.println("Директория не создана:" + e);
-            return null;
-        } catch (IOException e) {
-            System.out.println(e);
-            return null;
+    public Path createDirectory(String path) {
+        if (Files.exists(Paths.get(path))) {
+            System.out.println("Директория \"" + path + "\" уже существует.");
+            return Paths.get(path);
+        } else {
+            try {
+                return Files.createDirectory(Paths.get(path));
+            } catch (Exception e) {
+                System.out.println("Директория не создана:" + e);
+                return null;
+            }
         }
     }
 
-    public Path getAddress() {
-        return address;
+    public Path getPath() {
+        return path;
     }
 
-    public void setAddress(String address) {
-        this.address = Paths.get(address);
+    public void setPath(String path) {
+        this.path = Paths.get(path);
     }
 }

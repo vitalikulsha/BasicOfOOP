@@ -1,32 +1,30 @@
 package Task_01_TextFile;
-/*
-Переменная name - имя файла, тип файла, директория
-Метод createFile() - создание файла
- */
 
-import java.io.IOException;
 import java.nio.file.*;
 
 public class MyFile {
     private String name;
     private String type;
     private Directory directory;
+    private Path filePath;
 
     public MyFile(String name, String type, Directory directory) {
         this.name = name;
         this.type = type;
         this.directory = directory;
+        this.filePath = createFile();
     }
 
     //создание файла
     public Path createFile() {
+        String filePath = directory.getPath() + "\\" + name + '.' + type;
         try {
-            return Files.createFile(Paths.get(directory.getAddress() + "\\" + name + '.' + type));
-        } catch (NullPointerException | FileAlreadyExistsException | AccessDeniedException e) {
-            System.out.println("Файл не создан: " + e);
+            return Files.createFile(Paths.get(filePath));
+        } catch (FileAlreadyExistsException e) {
+            System.out.println("Файл \"" + filePath + "\" уже существует.");
             return null;
-        } catch (IOException e) {
-            System.out.println(e);
+        } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
     }
@@ -53,5 +51,13 @@ public class MyFile {
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public Path getFilePath() {
+        return filePath;
+    }
+
+    public void setFilePath(Path filePath) {
+        this.filePath = filePath;
     }
 }
