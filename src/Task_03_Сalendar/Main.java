@@ -2,7 +2,7 @@ package Task_03_Сalendar;
 
 import java.text.ParseException;
 
-import static Task_03_Сalendar.DatabaseHoliday.*;
+import static Task_03_Сalendar.Holiday.*;
 
 /*
 Задача 3.

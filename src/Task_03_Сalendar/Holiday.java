@@ -4,9 +4,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class DatabaseHoliday {
+public class Holiday {
     public static DateFormat df = new SimpleDateFormat("dd-MM-yyyy");
-    public static List<Calendar> holidayList = new ArrayList<Calendar>() {
+    public static List<Calendar> HOLIDAY_LIST = new ArrayList<Calendar>() {
         {
             this.add(new GregorianCalendar(Calendar.YEAR, Calendar.JANUARY, 1));
             this.add(new GregorianCalendar(Calendar.YEAR, Calendar.JANUARY, 2));

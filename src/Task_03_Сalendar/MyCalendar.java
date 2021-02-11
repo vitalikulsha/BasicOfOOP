@@ -4,7 +4,7 @@ import java.text.ParseException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 
-import static Task_03_Сalendar.DatabaseHoliday.*;
+import static Task_03_Сalendar.Holiday.*;
 
 /*
 Задача 3.
@@ -12,18 +12,8 @@ import static Task_03_Сalendar.DatabaseHoliday.*;
 с помощью объектов которого можно хранить информацию о выходных и праздничных днях.
  */
 public class MyCalendar {
-    private Calendar startDay;//первый день календаря
-    private Calendar endDay;//последний день календаря
-
-    public MyCalendar() {
-        this.startDay = GregorianCalendar.getInstance();
-        this.startDay = GregorianCalendar.getInstance();
-    }
-
-    public MyCalendar(Calendar startDay, Calendar endDay) {
-        this.startDay = startDay;
-        this.endDay = endDay;
-    }
+    private Calendar startDay;//начало отчетного периода
+    private Calendar endDay;//конец отчетного периода
 
     public MyCalendar(String startDay, String endDay) throws ParseException {
         this.startDay = Calendar.getInstance();
@@ -74,7 +64,7 @@ public class MyCalendar {
             temp.setTime(startDay.getTime());
             int count = 0;
             while (startDay.before(endDay)) {
-                for (Calendar c : holidayList) {
+                for (Calendar c : HOLIDAY_LIST) {
                     if (startDay.get(Calendar.DAY_OF_YEAR) == c.get(Calendar.DAY_OF_YEAR)) {
                         count++;
                     }
