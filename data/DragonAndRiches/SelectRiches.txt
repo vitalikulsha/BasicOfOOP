@@ -1,3 +1,0 @@
-Список сокровищ на сумму 500000:
-BronzeRing, price = 30000
-DiamondBracelet, price = 300000
