@@ -1,9 +1,6 @@
 package Task_04_DragonAndRiches;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 
 /*
 Задача 4.
@@ -22,15 +19,9 @@ import java.io.InputStreamReader;
  */
 public class Main {
     public static void main(String[] args) throws IOException {
-        BufferedReader readerFile = new BufferedReader(new FileReader(Dragon.FILE_RICHES));
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         Dragon dragon = new Dragon("Дрогон");
-        dragon.readRiches(readerFile);
-        dragon.printRichesByNumber(0, 49, 20, 15, 30, 45, 87, 74);
         System.out.println("Самое дорогое сокровище: " + dragon.selectMaxPrice());
-        dragon.printRiches();
-        dragon.selectRichesAmount(500000, reader);
-
-        reader.close();
+        dragon.printTreasure();
+        dragon.selectTreasureAmount(500000);
     }
 }

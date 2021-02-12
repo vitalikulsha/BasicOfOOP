@@ -1,0 +1,2 @@
+Список сокровищ на сумму 500000:
+RingOfOmnipotence, price = 500000

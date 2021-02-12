@@ -1,97 +1,82 @@
 package Task_04_DragonAndRiches;
+/*
+Дракон и его сокровища.
+Создать программу, позволяющую обрабатывать сведения о 100 сокровищах в пещере дракона.
+Реализовать возможность просмотра сокровищ, выбора самого дорогого по стоимости сокровища и
+выбора сокровищ на заданную сумму.
+ */
 
 import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
-import java.nio.file.AccessDeniedException;
-import java.nio.file.FileAlreadyExistsException;
+import java.io.InputStreamReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.*;
 
 public class Dragon {
-    public static final String FILE_RICHES = "data\\DragonAndRiches\\RichesList.txt";
-    public static final String FILE_SELECT_RICHES = "data\\DragonAndRiches\\SelectRiches.txt";
-    public static final String FILE_RICHES_BY_NUMBER = "data\\DragonAndRiches\\RichesByNumber.txt";
+    public static final String FILE_RICHES = "data\\DragonAndTreasures\\TreasureList.txt";
+    public static final String FILE_SELECT_RICHES = "data\\DragonAndTreasures\\TreasureListWorth.txt";
     private String name;
-    private List<Riches> richesList;
+    private List<Treasure> treasureList;
 
     public Dragon(String name) {
         this.name = name;
+        this.treasureList = readTreasure();
     }
 
-    public Dragon(String name, List<Riches> richesList) {
-        this.name = name;
-        this.richesList = richesList;
-    }
-
-    //чтение списка сокровищ из файла и запись в richesList
-    public void readRiches(BufferedReader reader) throws IOException {
-        String richesString = reader.readLine();
-        List<Riches> richesList = new ArrayList<>();
-        while (richesString != null) {
-            String[] richesArr = richesString.split(";");
-            richesList.add(new Riches(richesArr[0], Integer.parseInt(richesArr[1])));
-            richesString = reader.readLine();
+    //чтение списка сокровищ из файла и запись в treasureList
+    private List<Treasure> readTreasure() {
+        try (BufferedReader readerFile = new BufferedReader(new FileReader(Dragon.FILE_RICHES))) {
+            String treasureString = readerFile.readLine();
+            List<Treasure> treasureList = new ArrayList<>();
+            while (treasureString != null) {
+                String[] richesArr = treasureString.split(";");
+                treasureList.add(new Treasure(richesArr[0], Integer.parseInt(richesArr[1])));
+                treasureString = readerFile.readLine();
+            }
+            return treasureList;
+        } catch (IOException e) {
+            System.out.println("Список сокровищ не прочитан: " + e);
+            return null;
         }
-        this.richesList = richesList;
     }
-
 
     //вывод в консоль списка сокровищ
-    public void printRiches() {
-        for (int i = 0; i < richesList.size(); i++) {
-            System.out.println("[" + i + "] " + richesList.get(i).toString());
+    public void printTreasure() {
+        for (int i = 0; i < treasureList.size(); i++) {
+            System.out.println("[" + i + "] " + treasureList.get(i).toString());
         }
-    }
-
-    //Вывод в консоль сокровищ по порядковым номерам
-    public void printRichesByNumber(int... numbers) {
-        List<Riches> list = new ArrayList<>();
-        System.out.println("Список сокровищ с номерами " + Arrays.toString(numbers) + ":");
-        for (int i = 0; i < numbers.length; i++) {
-            for (int j = 0; j < richesList.size(); j++) {
-                if (numbers[i] == j) {
-                    System.out.println("[" + j + "] " + richesList.get(i).toString());
-                    list.add(richesList.get(i));
-                    break;
-                }
-            }
-        }
-        StringBuilder str = new StringBuilder("Список сокровищ с номерами " + Arrays.toString(numbers) + ":\n");
-        writeFile(list, FILE_RICHES_BY_NUMBER, str);
     }
 
     //Запись в файл списка сокровищ
-    private void writeFile(List<Riches> richesList, String pathFile, StringBuilder str) {
+    private void writeFile(List<Treasure> treasureList, String pathFile, StringBuilder str) {
         try {
-            for (Riches value : richesList) {
+            for (Treasure value : treasureList) {
                 str.append(value.toString() + "\n");
             }
             Files.writeString(Paths.get(pathFile), str.toString());
-        } catch (FileAlreadyExistsException e) {
-            e.printStackTrace();
-        } catch (NullPointerException | AccessDeniedException e) {
-            e.printStackTrace();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("Файл не записан: " + e);
         }
     }
 
     //Выбор самого дорогого сокровища
-    public Riches selectMaxPrice() {
-        Riches richesMaxPrice = richesList.get(0);
-        for (Riches riches : richesList) {
-            if (riches.getPrice() > richesMaxPrice.getPrice()) {
-                richesMaxPrice = riches;
+    public Treasure selectMaxPrice() {
+        Treasure treasureMaxPrice = treasureList.get(0);
+        for (Treasure treasure : treasureList) {
+            if (treasure.getPrice() > treasureMaxPrice.getPrice()) {
+                treasureMaxPrice = treasure;
             }
         }
-        return richesMaxPrice;
+        return treasureMaxPrice;
     }
 
     //выбор сокровищ на заданную сумму
-    public List<Riches> selectRichesAmount(int amount, BufferedReader reader) throws IOException {
+    public List<Treasure> selectTreasureAmount(int amount) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         int constAmount = amount;
-        List<Riches> list = new ArrayList<>();
+        List<Treasure> list = new ArrayList<>();
         Set<Integer> numberSet = new HashSet<>();
         boolean select = true;
         while (select) {
@@ -100,29 +85,30 @@ public class Dragon {
                 int index = Integer.parseInt(reader.readLine());
                 while (true) {
                     if (numberSet.contains(index)) {
-                        System.out.print("Сокровище [" + index + "] " + this.richesList.get(index).getTitle() +
+                        System.out.print("Сокровище [" + index + "] " + this.treasureList.get(index).getTitle() +
                                 " уже выбрано, введите другой номер: ");
                         index = Integer.parseInt(reader.readLine());
                     } else {
                         break;
                     }
                 }
-                int residual = amount - this.richesList.get(index).getPrice();
+                int residual = amount - this.treasureList.get(index).getPrice();
                 if (residual >= 0) {
                     numberSet.add(index);
-                    list.add(this.richesList.get(index));
-                    amount -= this.richesList.get(index).getPrice();
+                    list.add(this.treasureList.get(index));
+                    amount -= this.treasureList.get(index).getPrice();
                 } else {
-                    System.out.println("Недостаточно средств, " + this.richesList.get(index).getTitle() +
+                    System.out.println("Недостаточно средств, " + this.treasureList.get(index).getTitle() +
                             " не выбран. Остаток средств: " + amount);
                 }
                 break;
             }
             select = continueSelect(amount, reader);
         }
-        printSelectRiches(list, constAmount);
+        printSelectTreasure(list, constAmount);
         StringBuilder str = new StringBuilder("Список сокровищ на сумму " + constAmount + ":\n");
         writeFile(list, FILE_SELECT_RICHES, str);
+        reader.close();
         return list;
     }
 
@@ -148,17 +134,16 @@ public class Dragon {
     }
 
     //Вывод в консоль выбранного списка сокровищ
-    private void printSelectRiches(List<Riches> list, int amount) {
+    private void printSelectTreasure(List<Treasure> list, int amount) {
         if (list.size() != 0) {
             System.out.println("Список сокровищ на сумму " + amount + ":");
-            for (Riches riches : list) {
-                System.out.println(riches.toString());
+            for (Treasure treasure : list) {
+                System.out.println(treasure.toString());
             }
         } else {
             System.out.println("Список сокровищ пуст.");
         }
     }
-
 
     public String getName() {
         return name;
@@ -166,13 +151,5 @@ public class Dragon {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<Riches> getRichesList() {
-        return richesList;
-    }
-
-    public void setRichesList(List<Riches> richesList) {
-        this.richesList = richesList;
     }
 }

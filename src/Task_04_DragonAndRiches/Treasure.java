@@ -1,10 +1,10 @@
 package Task_04_DragonAndRiches;
 
-public class Riches {
+public class Treasure {
     private String title;
     private int price;
 
-    public Riches(String title, int price) {
+    public Treasure(String title, int price) {
         this.title = title;
         this.price = price;
     }
