@@ -37,6 +37,7 @@ public class DataUtil {
             }
         }
         String type = selectType(reader, typeList);
+        reader.close();
         return flowerStore.orderFlowerArrangement(type);
     }
 
