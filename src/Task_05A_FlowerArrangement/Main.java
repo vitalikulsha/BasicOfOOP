@@ -4,7 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-import static Task_05A_FlowerArrangement.Database.*;
+import static Task_05A_FlowerArrangement.DataUtil.*;
 
 /*
 Задача 5.
@@ -20,7 +20,6 @@ import static Task_05A_FlowerArrangement.Database.*;
  */
 public class Main {
     public static void main(String[] args) throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        selectFlowerArrangement(reader);
+        selectFlowerArrangement();
     }
 }

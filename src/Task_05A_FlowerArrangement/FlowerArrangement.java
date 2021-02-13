@@ -6,13 +6,13 @@ import java.util.Objects;
 
 public abstract class FlowerArrangement {
     protected String name;
-    protected String packaging;
+    protected String wrapper;
     protected List<String> flowers = new ArrayList<>();
     protected int price;
 
     public void prepare() {
         System.out.println("Подготовка цветочной композиции \"" + name + "\":");
-        System.out.println(" подготовить упаковку: " + packaging);
+        System.out.println(" подготовить упаковку: " + wrapper);
         System.out.println(" подготовить цветы: ");
         for (String flower : flowers) {
             System.out.println("\t- " + flower);
@@ -41,12 +41,12 @@ public abstract class FlowerArrangement {
         if (o == null || getClass() != o.getClass()) return false;
         FlowerArrangement that = (FlowerArrangement) o;
         return price == that.price && Objects.equals(name, that.name) &&
-                Objects.equals(packaging, that.packaging) && Objects.equals(flowers, that.flowers);
+                Objects.equals(wrapper, that.wrapper) && Objects.equals(flowers, that.flowers);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, packaging, flowers, price);
+        return Objects.hash(name, wrapper, flowers, price);
     }
 
     @Override
@@ -56,7 +56,7 @@ public abstract class FlowerArrangement {
             sb.append(flower + ", ");
         }
         return name + ':' +
-                "\n- упаковка '" + packaging + '\'' +
+                "\n- упаковка '" + wrapper + '\'' +
                 "\n- цветы: " + sb.substring(0, sb.length() - 2).toString() +
                 "\n- цена = " + price + " руб.";
     }
