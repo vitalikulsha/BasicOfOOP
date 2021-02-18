@@ -8,7 +8,7 @@ import java.util.List;
 public class BouquetDepartmentFlowerStore extends FlowerStore {
 
     //база типов цветочных композиций в букете
-    protected static List<String> typeBouquetList = new ArrayList<>() {
+    protected final static List<String> TYPE_BOUQUET_LIST = new ArrayList<>() {
         {
             this.add("букет из роз");
             this.add("букет из астр");
@@ -19,13 +19,13 @@ public class BouquetDepartmentFlowerStore extends FlowerStore {
 
     @Override
     protected FlowerArrangement createFlowerArrangement(String type) {
-        if (type.equalsIgnoreCase(typeBouquetList.get(0))) {
+        if (TYPE_BOUQUET_LIST.get(0).equalsIgnoreCase(type)) {
             return new BouquetRoseFlowerArrangement();
-        } else if (type.equalsIgnoreCase(typeBouquetList.get(1))) {
+        } else if (TYPE_BOUQUET_LIST.get(1).equalsIgnoreCase(type)) {
             return new BouquetAsterFlowerArrangement();
-        } else if (type.equalsIgnoreCase(typeBouquetList.get(2))) {
+        } else if (TYPE_BOUQUET_LIST.get(2).equalsIgnoreCase(type)) {
             return new BouquetTulipFlowerArrangement();
-        } else if (type.equalsIgnoreCase(typeBouquetList.get(3))) {
+        } else if (TYPE_BOUQUET_LIST.get(3).equalsIgnoreCase(type)) {
             return new BouquetLilyFlowerArrangement();
         } else {
             return null;

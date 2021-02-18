@@ -8,7 +8,7 @@ import java.util.List;
 
 public class DataUtil {
     //база стилей цветочных композиций
-    protected static List<String> styleList = new ArrayList<>() {
+    protected final static List<String> STYLE_LIST = new ArrayList<>() {
         {
             this.add("коробка");
             this.add("букет");
@@ -18,19 +18,19 @@ public class DataUtil {
     //выбор цветочной композиции
     protected static FlowerArrangement selectFlowerArrangement() throws IOException {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-        System.out.print("Выберите стиль цветочной композиции из списка " + styleList.toString() + ": ");
+        System.out.print("Выберите стиль цветочной композиции из списка " + STYLE_LIST.toString() + ": ");
         FlowerStore flowerStore = null;
         String style = null;
         List<String> typeList = null;
         while (true) {
             style = reader.readLine();
-            if (styleList.get(0).equalsIgnoreCase(style)) {
+            if (STYLE_LIST.get(0).equalsIgnoreCase(style)) {
                 flowerStore = new BoxDepartmentFlowerStore();
-                typeList = BoxDepartmentFlowerStore.typeBoxList;
+                typeList = BoxDepartmentFlowerStore.TYPE_BOX_LIST;
                 break;
-            } else if (styleList.get(1).equalsIgnoreCase(style)) {
+            } else if (STYLE_LIST.get(1).equalsIgnoreCase(style)) {
                 flowerStore = new BouquetDepartmentFlowerStore();
-                typeList = BouquetDepartmentFlowerStore.typeBouquetList;
+                typeList = BouquetDepartmentFlowerStore.TYPE_BOUQUET_LIST;
                 break;
             } else {
                 System.out.print("Нет такой цветочной композиции, попробуйте еще раз. ");

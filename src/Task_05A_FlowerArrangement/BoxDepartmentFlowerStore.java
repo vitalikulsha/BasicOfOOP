@@ -4,13 +4,12 @@ import Task_05A_FlowerArrangement.BoxFlowerArrangement.*;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.TreeSet;
+
 
 public class BoxDepartmentFlowerStore extends FlowerStore {
 
     //база типов цветочных композиций в коробке
-    protected static List<String> typeBoxList = new ArrayList<>() {
+    protected final static List<String> TYPE_BOX_LIST = new ArrayList<>() {
         {
             this.add("коробка из роз");
             this.add("коробка из астр");
@@ -20,11 +19,11 @@ public class BoxDepartmentFlowerStore extends FlowerStore {
 
     @Override
     protected FlowerArrangement createFlowerArrangement(String type) {
-        if (type.equalsIgnoreCase(typeBoxList.get(0))) {
+        if (TYPE_BOX_LIST.get(0).equalsIgnoreCase(type)) {
             return new BoxRoseFlowerArrangement();
-        } else if (type.equalsIgnoreCase(typeBoxList.get(1))) {
+        } else if (TYPE_BOX_LIST.get(1).equalsIgnoreCase(type)) {
             return new BoxAsterFlowerArrangement();
-        } else if (type.equalsIgnoreCase(typeBoxList.get(2))) {
+        } else if (TYPE_BOX_LIST.get(2).equalsIgnoreCase(type)) {
             return new BoxTulipFlowerArrangement();
         } else {
             return null;
