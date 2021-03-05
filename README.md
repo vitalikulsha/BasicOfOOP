@@ -1,7 +1,6 @@
 # Basics of OOP
 ## Description
-### Решите задачи.
-### Каждое решение можно оформить в отдельном проекте.
+### Решите задачи. Каждое решение можно оформить в отдельном проекте.
 
 ## Задача 1: [Task_01_TextFile](https://github.com/vitalikulsha/BasicOfOOP/tree/master/src/Task_01_TextFile/)
 
