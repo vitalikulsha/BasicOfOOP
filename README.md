@@ -1,6 +1,6 @@
 # Оглавление
-1. [Basics of OOP](#Basics-of-OOP)
-2. [Questions](#Questions)
+## 1. [Basics of OOP](#Basics-of-OOP)
+## 2. [Questions](#Questions)
 
 # Basics of OOP
 ## Description
