@@ -64,7 +64,7 @@ __Вариант B. Подарки.__ Реализовать приложени�
 # Questions
 ## 1. [OOP, Classes and Objects, Inheritance, Class Object, Interfaces](#OOP,-Classes-and-Objects,-Inheritance,-Class-Object,-Interfaces)
 ## 2. [Generic classes and Interfaces, Enums](#Generic-classes-and-Interfaces,-Enums)
-## 3. [Exceptions and Errors](#Exceptions-and-Errors);
+## 3. [Exceptions and Errors](#Exceptions-and-Errors)
 ## Description
 ### Ответьте на следующие вопросы.
 ### Не всегда в литературе или обучающих видео-роликах вы можете найти прямой ответ на поставленный вопрос, использующий к тому же одинаковые формулировки.
